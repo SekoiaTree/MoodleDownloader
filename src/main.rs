@@ -28,7 +28,7 @@ async fn main() {
                 let text= resp.text().await?;
                 let begin = text.find("Click ");
                 if begin.is_none() {
-                    panic!("Invalid session token (probably)! You'll want to check that.");
+                    panic!("Could not find the text \"Click\" in the response. This might be because the URL is not a double-link but a direct link, or because your session token is invalid.");
                 }
                 let begin = begin.unwrap()+15;
                 let end = begin+(text[begin..]).find("\"").unwrap();
